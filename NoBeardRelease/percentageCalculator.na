@@ -1,0 +1,49 @@
+"Enter maximum points:Enter points achieved:Percentage:"
+inc 32
+
+# Output first string
+lit 0
+lit 21
+lit 22
+out 2
+
+# Input number and output
+la 0 32 # maximum points
+la 0 36
+in 0
+
+# Output second string
+lit 21 #address
+lit 22 #length
+lit 23 #column width
+out 2
+
+# Input second number and output
+la 0 40 # achieved points
+la 0 44
+in 0
+
+# Output third string
+lit 43
+lit 11
+lit 12
+out 2
+
+# Calculation
+la 0 48
+lv 0 40
+lit 100
+mul
+sto
+la 0 52
+lv 0 48
+lv 0 32
+div
+sto
+
+lv 0 52
+lit 1
+out 0 
+out 3
+
+halt

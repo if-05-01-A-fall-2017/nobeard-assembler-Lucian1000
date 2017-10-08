@@ -1,0 +1,98 @@
+"Enter a number:Error"
+inc 8
+
+#print "Enter a number: "
+lit 0
+lit 15
+lit 16
+out 2
+
+#read in an int
+la 0 12
+la 0 16
+in 0
+
+# test is no number
+lv 0 16
+lit 0
+rel 3
+fjmp .error
+
+# test negative
+lv 0 12
+lit 0
+rel 4
+tjmp .calculate
+fjmp .error
+
+.calculate
+la 0 20 # our prime
+lit 2
+sto
+
+.loop
+lv 0 12
+lv 0 20
+mod
+lit 0
+rel 2
+fjmp .newPrimeNumber
+
+#divided and printed
+la 0 12
+lv 0 12
+lv 0 20
+div
+sto
+lv 0 20
+lit 1
+out 0
+out 3
+
+#test if end
+lv 0 12
+lit 1
+rel 2
+fjmp .loop
+
+jmp .end
+
+#get next primenumber
+.newPrimeNumber
+la 0 20
+lv 0 20
+lit 1
+add
+sto
+
+# counter variable
+la 0 24
+lit 1
+sto
+
+la 0 24
+lv 0 24
+lit 1
+add
+sto
+
+lv 0 20
+lv 0 24
+mod
+lit 0
+rel 2
+tjmp .newPrimeNumber
+
+jmp .loop
+
+.end
+out 3
+halt
+
+.error
+# Wrong way Oops
+lit 15
+lit 5
+lit 6
+out 2
+jmp .end
