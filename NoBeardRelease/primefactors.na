@@ -1,91 +1,98 @@
-"Enter number:Here are the primefactors!Error!"
-inc 12
+"Enter a number:Error"
+inc 8
 
-# Output first string
+#print "Enter a number: "
 lit 0
-lit 13
-lit 14
+lit 15
+lit 16
 out 2
 
-# Input Number
-la 0 32
-la 0 36
+#read in an int
+la 0 12
+la 0 16
 in 0
-out 3
 
-# if number isnt number
-lv 0 36
-lit 1
+# test is no number
+lv 0 16
+lit 0
 rel 3
-tjmp .error
+fjmp .error
 
-# if number is less than 1                                                                          #adr 32: number
-lv 0 32                                                                                             #adr 40: primes
-lit 1
-rel 0
-tjmp .error
+# test negative
+lv 0 12
+lit 0
+rel 4
+tjmp .calculate
+fjmp .error
 
-# Output second string
-lit 13
-lit 26
-lit 26
-out 2
-out 3
-
-# Store a 2 in adr40
-la 0 40
+.calculate
+la 0 20 # our prime
 lit 2
 sto
-jmp .loop
 
-###########################################################
 .loop
-# if number <= 1
-lv 0 32
-lit 1
-rel 1
-tjmp .end
-fjmp .calculation
-
-.calculation
-lv 0 32
-lv 0 40
+lv 0 12
+lv 0 20
 mod
 lit 0
 rel 2
-tjmp .gotPrime
-fjmp .gotNoPrime
+fjmp .newPrimeNumber
 
-.gotPrime
-# Output number
-lv 0 40
-lit 3
-out 0
-# go to next number
-la 0 32
-lv 0 32
-lv 0 40
+#divided and printed
+la 0 12
+lv 0 12
+lv 0 20
 div
 sto
-jmp .loop
+lv 0 20
+lit 1
+out 0
+out 3
 
-.gotNoPrime
-# go to next prime
-la 0 40
-lv 0 40
+#test if end
+lv 0 12
+lit 1
+rel 2
+fjmp .loop
+
+jmp .end
+
+#get next primenumber
+.newPrimeNumber
+la 0 20
+lv 0 20
 lit 1
 add
 sto
-jmp .calculation
-###########################################################
+
+# counter variable
+la 0 24
+lit 1
+sto
+
+la 0 24
+lv 0 24
+lit 1
+add
+sto
+
+lv 0 20
+lv 0 24
+mod
+lit 0
+rel 2
+tjmp .newPrimeNumber
+
+jmp .loop
 
 .end
 out 3
 halt
 
 .error
-lit 39
-lit 6
+# Wrong way Oops
+lit 15
+lit 5
 lit 6
 out 2
 jmp .end
