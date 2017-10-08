@@ -1,0 +1,46 @@
+"Enter number:"
+inc 12
+
+# Output string
+lit 0
+lit 13
+lit 14
+out 2
+
+# Input number
+la 0 32 # Max number
+la 0 36
+in 0
+out 3
+
+# Get a 1
+la 0 40
+lit 0
+lit 1
+add
+sto
+
+lv 0 40
+lit 3
+out 0
+jmp .loop
+
+# loop
+.loop
+lv 0 40
+lv 0 32
+rel 2
+tjmp .end
+la 0 40
+lv 0 40
+lit 1
+add
+sto
+lv 0 40
+lit 3
+out 0
+jmp .loop
+
+.end
+out 3
+halt
